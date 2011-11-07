@@ -29,10 +29,30 @@
 		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;" enabled="false" percent="73">&lt;/div></pre>
 		<div class="percentSelector" style="width:500px; height:30px;" enabled="false" percent="73"></div>
 		
-		<h2>Example 4 - using the callback</h2>
-		<p></p>
-		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;" enabled="false" percent="73">&lt;/div></pre>
-		<script>var bob = function() { alert("hello"); }</script>
-		<div class="percentSelector" style="width:500px; height:30px;" onPercentChange="bob();"></div>
+		<h2>Example 4 - Different Sizes</h2>
+		<p>As mentioned above, you can easily create different sized versions of the bar using CSS:</p>
+		<pre>&lt;div class="percentSelector" style="width:40px; height:15px;" step="25">&lt;/div></pre>
+		<div class="percentSelector" style="width:40px; height:15px;" step="25"></div>
+		<pre>&lt;div class="percentSelector" style="width:800px; height:75px;" step="2">&lt;/div></pre>
+		<div class="percentSelector" style="width:800px; height:75px;" step="2"></div>
+		
+		
+		<h2>Example 5 - Using the Callback</h2>
+		<p>Adding javascript to the "onPercentChange" attribute (or adding a function to the object's "onpercentchange" property of the bar's DOM object) allows you to receive and process a callback when the percent changes. This callback only occurs when the user expects the percent to change (so, if a user is sliding the bar, they the event will not be issued until they let up on the mouse or their finger). Therefore, it's generally pretty safe to do things like make an AJAX call as the result of this event in order to persist the new value back to the server.</p>
+		<pre>&lt;script>
+var percentUpdated = function(p) {
+	$('#percentStatus').text("Percent: " + p + "%");
+}
+&lt;/script>
+&lt;div class="percentSelector" style="width:500px; height:30px; float:left;" onPercentChange="percentUpdated(percent)" step="5">&lt;/div>
+&lt;div id="percentStatus" style="float:left; font-size:28px; margin-left:5px;">&lt;/div>
+</pre>
+<script>var percentUpdated = function(p) {
+	$('#percentStatus').text(p + "%");
+}</script>
+		<div class="percentSelector" style="width:500px; height:30px; float:left;" onPercentChange="percentUpdated(percent)" step="5"></div>
+<div id="percentStatus" style="float:left; font-size:28px; margin-left:5px;">100%</div>
+
+	<div style="height:100px">&nbsp;</div>
 	</body>
 </html>
