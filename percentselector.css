@@ -1,0 +1,25 @@
+.percentSelector {
+	border: 1px solid black;
+	overflow: hidden;
+}
+
+.percentSelector>.PBoverlay {
+	position: relative;
+	z-index: 10;
+}
+
+.percentSelector>.PBcolorGrad {
+	padding:0;
+	position: relative;
+	z-index: 5;
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.9);
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,0.9);
+	box-shadow: 0 0 10px rgba(0,0,0,0.9); /*** for IE ***/
+	background-color: green; /*** for IE9 ***/
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0,255,0)), color-stop(40%, rgb(255,255,0)), color-stop(40%, rgb(255,255,0)), to(rgb(255,0,0)) );
+	background-image: -moz-linear-gradient(top, rgb(0,255,0), rgb(255,255,0) 40%, rgb(255,255,0) 60%, rgb(255,0,0));
+}
+
+.percentSelector>.PBfallbackColor { /*** for IE7-8 ***/
+	background-color: green;
+}
