@@ -65,7 +65,7 @@ var setPercent = function(bar, newPercent, animate) {
 	
 	if(fallbackMode) {
 		$bar.children(".PBfallbackColor").css("width", $bar.innerWidth() * newPercent / 100.0);
-		console.log("setting percent to: " + newPercent);
+		//console.log("setting percent to: " + newPercent);
 	} else {
 		
 		if(animate) {
