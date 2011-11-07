@@ -13,6 +13,11 @@ var initBar = function(bar) {
 	$bar.children(".PBcolorGrad").css("height", height*20).css("top", -(2 * height));
 	$bar.children(".PBoverlay").remove();
 
+	if($bar.attr("onpercentchange")) {
+		eval("var opc = function() {" + $bar.attr("onpercentchange") + "}");
+		$bar.get(0).onpercentchange = opc;
+	}
+
 	if(!fallbackMode) {
 		$bar.append($("<canvas class='PBoverlay'></canvas>").css("height", height).css("width", $bar.innerWidth()));
 		$bar.append($("<div class='PBcolorGrad'></div>").css("height", height*20).css("top", -(2 * height)));
