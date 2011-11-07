@@ -53,6 +53,10 @@ Since the default sizing for DIV tags does not really play well with the bar (th
 
 	*This simply allows you to enable/disable user interaction with the bar. Setting it to "false" will disable users' ability to change the bar's value by clicking it.*
 
+*	**onPercentChange** (Example: onPercentChange="alert('New Percent: ' + percent)")
+
+	*You can also add a callback in order to handle user changes to the percent.*
+
 *	More to come?!
 
 Demo
