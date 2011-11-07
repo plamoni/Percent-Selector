@@ -14,7 +14,7 @@ var initBar = function(bar) {
 	$bar.children(".PBoverlay").remove();
 
 	if($bar.attr("onpercentchange")) {
-		eval("var opc = " + $bar.attr("onpercentchange"));
+		eval("var opc = function() {" + $bar.attr("onpercentchange") + "}");
 		$bar.get(0).onpercentchange = opc;
 	}
 

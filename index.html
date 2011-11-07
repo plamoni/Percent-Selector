@@ -7,8 +7,32 @@
 		<link type="text/css" href="percentselector.css" rel="stylesheet"  />
 	<head>
 	<body>
-		<h1>Demo</h1>
-		<p>The percent selector bar is pretty straight forward. It lets your users </p>
-		<div class="percentSelector" style="width:500px; height:40px;" percent="50"></div>
+		<h1>Percent Selector</h1>
+		<p>The percent selector bar is pretty straight forward. It allows for VERY easy creation of percent selection widgets like those below. They perform well (even, and especially on webkit-based mobile devices like iPhone and Android), are easily customized (they are "Image-free" -- all graphics are done dynamically with HTML5 canvas and CSS3), and are very easy to include in your pages.</p>
+		<h2>Example 1 - Bare Bones</h2>
+		<p>A "bare-bones" bar and can be created with the following markup:</p>
+		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;">&lt;/div></pre>
+		<div class="percentSelector" style="width:500px; height:30px;"></div>
+		
+		<h2>Example 2 - Initial Percent</h2>
+		<p>Setting the initial percent is very easy!</p>
+		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;" percent="50">&lt;/div></pre>
+		<div class="percentSelector" style="width:500px; height:30px;" percent="50"></div>
+		
+		<h2>Example 3 - Setting the Step</h2>
+		<p>Setting the step allows you to define at what intervals values can be selected:</p>
+		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;" step="10">&lt;/div></pre>
+		<div class="percentSelector" style="width:500px; height:30px;" step="10"></div>
+		
+		<h2>Example 3 - Disabling User Interaction</h2>
+		<p>If you don't want users to be able to modify a bar on the screen (e.g. if you only want to modify it programmatically), you can do so by simply setting 'enabled="false"':</p>
+		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;" enabled="false" percent="73">&lt;/div></pre>
+		<div class="percentSelector" style="width:500px; height:30px;" enabled="false" percent="73"></div>
+		
+		<h2>Example 4 - using the callback</h2>
+		<p></p>
+		<pre>&lt;div class="percentSelector" style="width:500px; height:30px;" enabled="false" percent="73">&lt;/div></pre>
+		<script>var bob = function() { alert("hello"); }</script>
+		<div class="percentSelector" style="width:500px; height:30px;" onPercentChange="bob();"></div>
 	</body>
 </html>
