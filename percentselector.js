@@ -13,9 +13,17 @@ var initBar = function(bar) {
 	$bar.children(".PBcolorGrad").css("height", height*20).css("top", -(2 * height));
 	$bar.children(".PBoverlay").remove();
 
-	if($bar.attr("onpercentchange")) {
-		eval("var opc = function() {" + $bar.attr("onpercentchange") + "}");
-		$bar.get(0).onpercentchange = opc;
+	var opcAttr = $bar.attr("onpercentchange");
+	if(opcAttr) {
+		if(typeof opcAttr == "function") {
+			$bar.get(0).onpercentchange = opcAttr;
+		} else if (typeof opcAttr == "string") {
+			if (/^function/.test(opcAttr)) {
+				eval("$bar.get(0).onpercentchange = " + opcAttr);
+			} else {
+				eval("$bar.get(0).onpercentchange = function() {" + opcAttr + "}");
+			}
+		}
 	}
 
 	if(!fallbackMode) {
