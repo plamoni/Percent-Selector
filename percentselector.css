@@ -23,3 +23,11 @@
 .percentSelector>.PBfallbackColor { /*** for IE7-8 ***/
 	background-color: green;
 }
+
+.percentSelector>.PBfallbackOverlay {
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.fallback {
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#60000000',GradientType=0 ); /* IE6-9 */
+}
