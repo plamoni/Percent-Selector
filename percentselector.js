@@ -51,19 +51,22 @@ PercentSelector.initBar = function(bar) {
 		PercentSelector.setPercent($bar, percent, true);
 	}
 	
-	if(!($bar.attr("enabled") && $bar.attr("enabled").toLowerCase() == "false")) {
-		var $bindBar = $bar;
-	
-		if(document.createTouch == undefined) {
-			$bindBar.bind("mousedown", PercentSelector.handlers.mouseDown);
-			$bindBar.bind("mousemove", PercentSelector.handlers.mouseMove);
-			$bindBar.bind("mouseup", PercentSelector.handlers.mouseUp);
-			$bindBar.bind("mouseout", PercentSelector.handlers.mouseOut);
-		} else {
-			$bindBar.bind("touchstart", PercentSelector.handlers.touchStart);
-			$bindBar.bind("touchmove", PercentSelector.handlers.touchMove);
-			$bindBar.bind("touchend", PercentSelector.handlers.touchEnd);
+	if(!bar.isBound) {
+		if(!($bar.attr("enabled") && $bar.attr("enabled").toLowerCase() == "false")) {
+			var $bindBar = $bar;
+		
+			if(document.createTouch == undefined) {
+				$bindBar.bind("mousedown", PercentSelector.handlers.mouseDown);
+				$bindBar.bind("mousemove", PercentSelector.handlers.mouseMove);
+				$bindBar.bind("mouseup", PercentSelector.handlers.mouseUp);
+				$bindBar.bind("mouseout", PercentSelector.handlers.mouseOut);
+			} else {
+				$bindBar.bind("touchstart", PercentSelector.handlers.touchStart);
+				$bindBar.bind("touchmove", PercentSelector.handlers.touchMove);
+				$bindBar.bind("touchend", PercentSelector.handlers.touchEnd);
+			}
 		}
+		bar.isBound = true; //to prevent multi-binding!
 	}
 }
 
@@ -175,17 +178,18 @@ PercentSelector.handlers.touchStart = function(event) {
 }
 
 PercentSelector.handlers.touchEnd = function(event) {
-	if(!PercentSelector.handlers.touchDragging) {
-		touches = event.originalEvent.touches;
-		if(touches.length == 0) touches = event.originalEvent.changedTouches;
-		if(touches.length > 1) return;
-		
-		var bar = touches[0].target.parentNode;
-		
-		PercentSelector.setPercentFromPageX(bar, touches[0].pageX, true);
-		if(bar.onpercentchange != undefined) 
-			bar.onpercentchange($(bar).attr("percent"));
+	touches = event.originalEvent.touches;
+	if(touches.length == 0) touches = event.originalEvent.changedTouches;
+	if(touches.length > 1) return;
+	
+	var bar = touches[0].target.parentNode;
+	
+	PercentSelector.setPercentFromPageX(bar, touches[0].pageX, true);
+
+	if(bar.onpercentchange != undefined) {
+		bar.onpercentchange($(bar).attr("percent"));
 	}
+
 	
 	event.preventDefault();
 
